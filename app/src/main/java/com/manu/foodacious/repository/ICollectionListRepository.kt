@@ -1,8 +1,8 @@
 package com.manu.foodacious.repository
 
-import com.manu.foodacious.model.Collection
+import com.manu.foodacious.model.CollectionEntity
 
 interface ICollectionListRepository {
 
-    suspend fun getCollectionList(cityId : Int) : List<Collection>?
+    suspend fun getCollectionList(cityId : Int) : List<CollectionEntity>?
 }

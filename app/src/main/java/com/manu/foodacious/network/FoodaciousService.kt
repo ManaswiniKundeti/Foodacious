@@ -1,7 +1,6 @@
 package com.manu.foodacious.network
 
-import com.manu.foodacious.BuildConfig
-import com.manu.foodacious.model.Collection
+import com.manu.foodacious.model.CollectionData
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -27,10 +26,10 @@ fun createFoodaciousService() : IFoodaciousService {
 
 interface IFoodaciousService {
 
-    @Headers("user-key=${BuildConfig.ZOMATO_API_KEY}")
-    @GET("collections/")
+    @Headers("user-key:080aa6684f4410919d9208e8549fb979")
+    @GET("collections")
     suspend fun fetchCollectionList(
         @Query("city_id")
         city_id : Int
-    ) : Response<List<Collection>>
+    ) : Response<CollectionData>
 }

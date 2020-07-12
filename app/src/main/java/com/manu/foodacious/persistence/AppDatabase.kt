@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.manu.foodacious.model.Collection
+import com.manu.foodacious.model.CollectionEntity
 
-@Database(entities = [Collection::class], version = 1)
+@Database(entities = [CollectionEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun collectionDao() : CollectionDao
