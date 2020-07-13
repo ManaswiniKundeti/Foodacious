@@ -1,7 +1,7 @@
 package com.manu.foodacious.repository
 
 import android.util.Log
-import com.manu.foodacious.model.CollectionEntity
+import com.manu.foodacious.model.Collection.CollectionEntity
 import com.manu.foodacious.network.IFoodaciousService
 import com.manu.foodacious.persistence.CollectionDao
 import java.lang.Exception

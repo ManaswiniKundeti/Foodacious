@@ -1,6 +1,6 @@
 package com.manu.foodacious.repository
 
-import com.manu.foodacious.model.CollectionEntity
+import com.manu.foodacious.model.Collection.CollectionEntity
 
 interface ICollectionListRepository {
 
