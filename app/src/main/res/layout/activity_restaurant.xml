@@ -5,10 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.ui.MainActivity">
+    tools:context=".view.ui.RestaurantActivity">
 
     <com.airbnb.epoxy.EpoxyRecyclerView
-        android:id="@+id/main_recycler_view"
+        android:id="@+id/restaurant_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +18,7 @@
         />
 
     <ProgressBar
-        android:id="@+id/main_progress_bar"
+        android:id="@+id/restaurant_progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="?android:attr/progressBarStyle"

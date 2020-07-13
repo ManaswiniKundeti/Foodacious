@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
-import com.manu.foodacious.model.CollectionEntity
+import com.manu.foodacious.model.Collection.CollectionEntity
 import com.manu.foodacious.view.controllers.CollectionController
 import com.manu.foodacious.viewmodel.MainActivityViewModel
 import com.manu.foodacious.viewmodel.MainActivityViewModelFactory
