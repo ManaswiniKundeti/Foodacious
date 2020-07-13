@@ -1,6 +1,7 @@
 package com.manu.foodacious.network
 
-import com.manu.foodacious.model.CollectionData
+import com.manu.foodacious.model.Collection.CollectionResponseData
+import com.manu.foodacious.model.Restaurant.RestaurantResponseData
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -31,5 +32,16 @@ interface IFoodaciousService {
     suspend fun fetchCollectionList(
         @Query("city_id")
         city_id : Int
-    ) : Response<CollectionData>
+    ) : Response<CollectionResponseData>
+
+    @Headers("user-key:080aa6684f4410919d9208e8549fb979")
+    @GET("search")
+    suspend fun fetchRestaurantsByCollection(
+        @Query("entity_id")
+        entity_id : Int,
+        @Query("entity_type")
+        entity_type : String,
+        @Query("collection_id")
+        collection_id : Int
+    ) : Response<RestaurantResponseData>
 }
