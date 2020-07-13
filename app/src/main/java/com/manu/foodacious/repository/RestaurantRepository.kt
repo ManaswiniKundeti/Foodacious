@@ -31,11 +31,11 @@ class RestaurantRepository(
                 }
                 restaurantEntityList
             } else {
-                Log.e(TAG, "There was error fetching restaurants")
+                Log.e(TAG, "There was error fetching restaurants, error in response")
                 return null
             }
         } catch (e: Exception) {
-            Log.e(TAG, "There was error fetching restaurants", e)
+            Log.e(TAG, "InCatch : There was error fetching restaurants", e)
             return null
         }
     }

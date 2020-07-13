@@ -1,5 +1,6 @@
 package com.manu.foodacious.view.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -57,6 +58,10 @@ class MainActivity : AppCompatActivity(),CollectionController.IControllerCallbac
     }
 
     override fun onCollectionClicked(collection: CollectionEntity) {
-        Toast.makeText(this, "Collection clicked", Toast.LENGTH_LONG).show()
+        //Toast.makeText(this, "Collection clicked", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, RestaurantActivity::class.java)
+        intent.putExtra("collection_id", collection.collectionId)
+        this.startActivity(intent)
+
     }
 }

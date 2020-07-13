@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    app:cardElevation="4dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginStart="5dp"
+    app:cardCornerRadius="10dp"
+    android:id="@+id/restaurant_item_card_view">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/restaurant_item_url_image_view"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars"
+            />
+
+        <TextView
+            android:id="@+id/restaurant_item_name_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/restaurant_item_url_image_view"
+            android:background="#7000"
+            android:gravity="center"
+            android:shadowColor="#000"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="6"
+            android:textAlignment="center"
+            android:textColor="@color/collection_item_textcolor"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/restaurant_item_url_image_view"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/restaurant_item_url_image_view"
+            app:layout_constraintTop_toTopOf="@id/restaurant_item_url_image_view"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="Trending this week" />
+
+        <TextView
+            android:id="@+id/restaurant_item_cusine_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#7000"
+            android:gravity="center"
+            android:shadowColor="#000"
+            android:shadowDx="3"
+            android:shadowDy="3"
+            android:shadowRadius="3"
+            android:textAlignment="center"
+            android:textColor="@color/collection_item_textcolor"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/restaurant_item_url_image_view"
+            app:layout_constraintEnd_toEndOf="@+id/restaurant_item_name_text_view"
+            app:layout_constraintStart_toStartOf="@+id/restaurant_item_name_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_item_name_text_view"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="30 places" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+
+
+
