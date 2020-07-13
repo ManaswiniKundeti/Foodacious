@@ -10,6 +10,8 @@ import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyModelClass
 import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.manu.foodacious.R
+import com.manu.foodacious.extensions.changeString
+import com.manu.foodacious.extensions.convertCountToString
 
 @EpoxyModelClass(layout = R.layout.item_collection)
 abstract class CollectionItemModel : EpoxyModelWithHolder<CollectionItemHolder>(){
@@ -22,7 +24,7 @@ abstract class CollectionItemModel : EpoxyModelWithHolder<CollectionItemHolder>(
 
     override fun bind(holder: CollectionItemHolder) {
        holder.collectionTitle.text = title
-        holder.collectionPlaceCount.text = placeCount
+        holder.collectionPlaceCount.text = placeCount.changeString()
         holder.collectionImageView.load(imageUrl){
             transformations(RoundedCornersTransformation())
         }

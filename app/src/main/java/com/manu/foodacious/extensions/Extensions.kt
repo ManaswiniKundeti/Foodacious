@@ -9,3 +9,11 @@ fun View.show(){
 fun View.hide(){
     visibility = View.GONE
 }
+
+fun Int.convertCountToString(): String {
+    return "$this Places"
+}
+
+fun String.changeString() : String {
+    return "$this Places"
+}
