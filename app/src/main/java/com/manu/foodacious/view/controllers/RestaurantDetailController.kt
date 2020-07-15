@@ -44,6 +44,12 @@ class RestaurantDetailController(private val callback : RestaurantDetailControll
                 }
             }
         }
+
+        /*data?.restaurantHighlights?.forEach { highlight ->
+            model {
+
+            }
+        }*/
     }
 
 }
