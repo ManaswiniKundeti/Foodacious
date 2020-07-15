@@ -4,8 +4,8 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.manu.foodacious.model.Restaurant.RestaurantEntity
 import com.manu.foodacious.view.models.restaurantItem
 
-class RestaurantController(private val callback : IResControllerCallback) : TypedEpoxyController<List<RestaurantEntity>>() {
-    interface IResControllerCallback{
+class RestaurantController(private val callback : IRestaurantControllerCallback) : TypedEpoxyController<List<RestaurantEntity>>() {
+    interface IRestaurantControllerCallback{
         fun onRestaurantClicked(restaurant : RestaurantEntity)
     }
 
