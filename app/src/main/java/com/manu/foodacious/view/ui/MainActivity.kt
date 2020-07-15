@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity(),CollectionController.IControllerCallbac
     override fun onCollectionClicked(collection: CollectionEntity) {
         //Toast.makeText(this, "Collection clicked", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, RestaurantActivity::class.java)
-        intent.putExtra("collection_id", collection.collectionId)
+        intent.putExtra(RestaurantActivity.COLLECTION_ID, collection.collectionId)
         this.startActivity(intent)
 
     }

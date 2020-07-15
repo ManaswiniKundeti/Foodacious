@@ -21,7 +21,7 @@ import com.manu.foodacious.viewstate.Loading
 import com.manu.foodacious.viewstate.Success
 import kotlinx.android.synthetic.main.activity_restaurant.*
 
-class RestaurantActivity : AppCompatActivity(), RestaurantController.IResControllerCallback {
+class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurantControllerCallback {
 
     companion object {
         const val COLLECTION_ID = "collection_id"
@@ -76,10 +76,9 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IResControl
     }
 
     override fun onRestaurantClicked(restaurant: RestaurantEntity) {
-        Toast.makeText(this, "Restaurant clicked", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Restaurant clicked", Toast.LENGTH_SHORT).show()
+        val intent = Intent(this, RestaurantDetailActivity::class.java)
+        intent.putExtra(RestaurantDetailActivity.RESTAURANT_ID, restaurant.restaurantId)
+        this.startActivity(intent)
     }
-}
-
-private fun String.convertToInt(): Int {
-    return this.toInt()
 }
