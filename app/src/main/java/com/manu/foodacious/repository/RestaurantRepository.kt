@@ -39,4 +39,15 @@ class RestaurantRepository(
             return null
         }
     }
+
+    override suspend fun getRestaurantDetail(restaurantId: Int): RestaurantEntity? {
+        return try {
+            restaurantDao.getRestaurantDetail(restaurantId)
+        } catch (e: Exception) {
+            Log.e(TAG, "There was an error fetching favourite stocks", e)
+            return null
+        }
+    }
+
+
 }

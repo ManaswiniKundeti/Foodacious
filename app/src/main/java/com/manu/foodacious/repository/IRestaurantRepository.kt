@@ -7,4 +7,6 @@ interface IRestaurantRepository {
 
     suspend fun getRestaurantList(entityId : Int, entityName : String, collectionId : Int)
             : List<RestaurantEntity>?
+
+    suspend fun getRestaurantDetail(restaurantId : Int) : RestaurantEntity?
 }
