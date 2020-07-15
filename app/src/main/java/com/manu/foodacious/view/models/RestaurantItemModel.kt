@@ -20,15 +20,24 @@ abstract class RestaurantItemModel : EpoxyModelWithHolder<RestaurantItemHolder>(
     var cusine : String? = null
     @EpoxyAttribute
     lateinit var imageUrl : String
-    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash) var clickListener : View.OnClickListener? = null
+    @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
+    var clickListener : View.OnClickListener? = null
 
 
     override fun bind(holder: RestaurantItemHolder) {
         holder.restaurantNameTextView.text = name
         holder.restaurantCusineTextView.text = cusine
-        holder.restaurantUrlImageView.load(imageUrl){
-            transformations(RoundedCornersTransformation())
+        if(imageUrl.contentEquals("")) {
+            holder.restaurantUrlImageView.load(R.drawable.placeholder_image){
+                transformations(RoundedCornersTransformation())
+            }
+        }else{
+            holder.restaurantUrlImageView.load(imageUrl){
+                crossfade(true)
+                transformations(RoundedCornersTransformation())
+            }
         }
+
 
         clickListener.let {
             holder.restaurantCardView.setOnClickListener(it)

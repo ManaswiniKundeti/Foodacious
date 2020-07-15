@@ -18,6 +18,7 @@ class RestaurantActivityViewModel (private val restaurantRepository: RestaurantR
     private val _restaurantLiveData: MutableLiveData<ViewState<List<RestaurantEntity>?>> = MutableLiveData()
     val restaurantLiveData: LiveData<ViewState<List<RestaurantEntity>?>> = _restaurantLiveData
 
+
     fun getRestaurants(entityId : Int, entityName : String, collectionId : Int){
         viewModelScope.launch {
             _restaurantLiveData.value = Loading
@@ -29,5 +30,6 @@ class RestaurantActivityViewModel (private val restaurantRepository: RestaurantR
             }
         }
     }
+
 
 }
