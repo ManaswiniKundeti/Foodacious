@@ -14,7 +14,7 @@ data class RestaurantEntity(
     val restaurantUrl: String,
     @field:Json(name = "location")
     val restaurantLocation: RestaurantLocation,
-    @field:Json(name = "cusines")
+    @field:Json(name = "cuisines")
     val restaurantCusine: String?,
     @field:Json(name = "average_cost_for_two")
     val restaurantCostForTwo: Int,
@@ -27,5 +27,9 @@ data class RestaurantEntity(
     @field:Json(name = "menu_url")
     val restaurantMenuUrl: String,
     @field:Json(name = "phone_numbers")
-    val restaurantPhoneNumber: String
+    val restaurantPhoneNumber: String,
+    @field:Json(name = "highlights")
+    val restaurantHighlights: List<String>,
+    @field:Json(name = "establishment")
+    val restaurantEstablishment: List<String>
 )

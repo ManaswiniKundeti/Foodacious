@@ -27,6 +27,8 @@ abstract class RestaurantDetailHeaderItemModel : EpoxyModelWithHolder<Restaurant
     @EpoxyAttribute
     lateinit var cost : String
     @EpoxyAttribute
+    lateinit var establishment : String
+    @EpoxyAttribute
     var cusine : String? = null
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
     var phoneClickListener : View.OnClickListener? = null
@@ -48,7 +50,7 @@ abstract class RestaurantDetailHeaderItemModel : EpoxyModelWithHolder<Restaurant
         holder.restaurantDetailRatingBar.rating = rating!!
         holder.restaurantDetailRatingTextView.text = rating.toString()
         holder.restaurantDetailNameTextView.text = name
-        holder.restaurantDetailCusineTextView.text = cusine
+        holder.restaurantDetailCusineTextView.text = "${establishment} - ${cusine}"
         holder.restaurantDetailCityTextView.text = city
         holder.restaurantDetailCostTextView.text = "Cost for Two - CA$${cost}(approx) without alcohol"
         phoneClickListener.let {

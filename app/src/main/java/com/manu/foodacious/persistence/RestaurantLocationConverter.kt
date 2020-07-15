@@ -13,7 +13,7 @@ class RestaurantLocationConverter {
     }
 
     @TypeConverter
-    fun fromStockProfile(restaurantLocation: RestaurantLocation): String {
+    fun fromRestaurantLocation(restaurantLocation: RestaurantLocation): String {
         return getMoshiAdapter().toJson(restaurantLocation)
     }
 

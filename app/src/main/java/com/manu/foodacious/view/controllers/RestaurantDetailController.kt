@@ -20,6 +20,9 @@ class RestaurantDetailController(private val callback : RestaurantDetailControll
                 thumbImgUrl(data.restaurantThumbnail)
                 rating(data.restaurantUserRating.aggregate_rating)
                 name(data.restaurantName)
+                data.restaurantEstablishment.forEach{
+                    establishment(it)
+                }
                 cusine(data.restaurantCusine)
                 city(data.restaurantLocation.city)
                 cost(data.restaurantCostForTwo.toString())
