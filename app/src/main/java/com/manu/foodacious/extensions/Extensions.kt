@@ -17,3 +17,7 @@ fun Int.convertCountToString(): String {
 fun String.changeString() : String {
     return "$this Places"
 }
+
+fun convertToCustomCostString(cost:Int) : String? {
+    return "CA$${cost}(approx)"
+}
