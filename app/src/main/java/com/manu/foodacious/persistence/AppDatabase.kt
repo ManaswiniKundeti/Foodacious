@@ -7,10 +7,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.manu.foodacious.model.Collection.CollectionEntity
 import com.manu.foodacious.model.Restaurant.RestaurantEntity
-import com.manu.foodacious.model.Restaurant.RestaurantLocation
 
 @Database(entities = [CollectionEntity::class, RestaurantEntity::class], version = 1)
-@TypeConverters(value = [RestaurantLocationConverter::class, RestaurantUserRatingConverter::class])
+@TypeConverters(value = [RestaurantLocationConverter::class, RestaurantUserRatingConverter::class, ListConverter::class])
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun restaurantDao() : RestaurantDao
