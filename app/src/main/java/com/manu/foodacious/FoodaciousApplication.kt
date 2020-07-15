@@ -8,5 +8,4 @@ class FoodaciousApplication : Application() {
         super.onCreate()
         Stetho.initializeWithDefaults(this)
     }
-
 }
