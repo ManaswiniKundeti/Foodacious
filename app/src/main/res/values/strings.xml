@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Foodacious</string>
+    <string name="restaurant_thumbnail_image">restaurant_thumbnail_image</string>
+
+    <string name="str_cost">Cost for Two: %1$s</string>
+    <string name="copy_location">Copy Location</string>
+    <string name="get_directions">Get Directions</string>
 </resources>

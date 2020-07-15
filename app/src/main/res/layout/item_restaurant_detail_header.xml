@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/restaurant_detail_thumb_imageView"
+        android:layout_width="411dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/restaurant_thumbnail_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/placeholder_image" />
+
+    <RatingBar
+        android:id="@+id/restaurant_detail_rating_bar"
+        style="@android:style/Widget.Material.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:accessibilityLiveRegion="none"
+        android:indeterminate="false"
+        android:isIndicator="false"
+        android:numStars="5"
+        android:rating="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_thumb_imageView" />
+
+
+    <TextView
+        android:id="@+id/restaurant_detail_rating_textView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:textColor="#000"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurant_detail_rating_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/restaurant_detail_rating_bar"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_thumb_imageView"
+        tools:text="3.7" />
+
+    <TextView
+        android:id="@+id/restaurant_detail_name_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_rating_bar"
+        tools:text="Goof Fortune Chinese Restaurant" />
+
+    <TextView
+        android:id="@+id/restaurant_detail_cusine_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Chinese"
+        android:textSize="20sp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_name_textView"
+        tools:text="Chinese" />
+
+    <TextView
+        android:id="@+id/restaurant_detail_city_textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_cusine_textView"
+        tools:text="Burlington" />
+
+
+    <TextView
+        android:id="@+id/restaurant_detail_cost_title_textView"
+        android:layout_width="0dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Cost for Two : "
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/restaurant_detail_call_imageButton"
+        app:layout_constraintEnd_toStartOf="@+id/restaurant_detail_call_imageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_city_textView"
+        tools:text="Cost for Two : " />
+
+    <ImageButton
+        android:id="@+id/restaurant_detail_call_imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/restaurant_detail_cost_title_textView"
+        app:layout_constraintTop_toBottomOf="@+id/restaurant_detail_city_textView"
+        app:srcCompat="@android:drawable/sym_action_call"
+        android:background="@android:color/transparent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
