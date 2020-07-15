@@ -26,6 +26,7 @@ abstract class CollectionItemModel : EpoxyModelWithHolder<CollectionItemHolder>(
        holder.collectionTitle.text = title
         holder.collectionPlaceCount.text = placeCount.changeString()
         holder.collectionImageView.load(imageUrl){
+            crossfade(true)
             transformations(RoundedCornersTransformation())
         }
 
