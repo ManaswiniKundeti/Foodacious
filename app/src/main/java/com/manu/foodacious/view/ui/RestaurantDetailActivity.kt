@@ -1,28 +1,28 @@
 package com.manu.foodacious.view.ui
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
 import com.manu.foodacious.model.Restaurant.RestaurantEntity
 import com.manu.foodacious.view.controllers.RestaurantDetailController
-import com.manu.foodacious.viewmodel.RestaurantActivityViewModel
-import com.manu.foodacious.viewmodel.RestaurantActivityViewModelFactory
 import com.manu.foodacious.viewmodel.RestaurantDetailActivityViewModel
 import com.manu.foodacious.viewmodel.RestaurantDetailActivityViewModelFactory
 import com.manu.foodacious.viewstate.Error
 import com.manu.foodacious.viewstate.Loading
 import com.manu.foodacious.viewstate.Success
-import kotlinx.android.synthetic.main.activity_restaurant.*
 import kotlinx.android.synthetic.main.activity_restaurant_detail.*
+import java.util.*
 
 class RestaurantDetailActivity  : AppCompatActivity(), RestaurantDetailController.IRestaurantDetailControllerCallback {
 
@@ -36,6 +36,7 @@ class RestaurantDetailActivity  : AppCompatActivity(), RestaurantDetailControlle
     private val viewModel by viewModels<RestaurantDetailActivityViewModel> {
         viewmodelFactory
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,15 +84,26 @@ class RestaurantDetailActivity  : AppCompatActivity(), RestaurantDetailControlle
     }
 
     override fun onPhoneClicked(restaurant: RestaurantEntity) {
-        Toast.makeText(this, "Phone Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Phone Clicked", Toast.LENGTH_SHORT).show()
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:${restaurant.restaurantPhoneNumber}")
+        this.startActivity(intent)
     }
 
     override fun onCopyLocationClicked(restaurant: RestaurantEntity) {
-        Toast.makeText(this, "Copy Location CLicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Copy Location CLicked", Toast.LENGTH_SHORT).show()
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip: ClipData = ClipData.newPlainText("address copied to clipboard",restaurant.restaurantLocation.address )
+        clipboard.setPrimaryClip(clip)
     }
 
     override fun onGetDirectionsClicked(restaurant: RestaurantEntity) {
-        Toast.makeText(this, "Get Directions Clicked", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this, "Get Directions Clicked", Toast.LENGTH_SHORT).show()
+        val uri: String = java.lang.String.format(Locale.ENGLISH, "geo:%f,%f?z=10",
+                restaurant.restaurantLocation.latitude, restaurant.restaurantLocation.longitude)
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+        intent.setPackage("com.google.android.apps.maps")
+        this.startActivity(intent)
     }
 
 }
