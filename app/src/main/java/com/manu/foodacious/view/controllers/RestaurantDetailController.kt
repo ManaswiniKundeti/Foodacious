@@ -4,7 +4,9 @@ import com.airbnb.epoxy.TypedEpoxyController
 import com.manu.foodacious.extensions.convertToCustomCostString
 import com.manu.foodacious.model.Restaurant.RestaurantEntity
 import com.manu.foodacious.view.models.restaurantDetailAddressItem
+import com.manu.foodacious.view.models.restaurantDetailDetailsItem
 import com.manu.foodacious.view.models.restaurantDetailHeaderItem
+import com.manu.foodacious.view.models.restaurantDetailOtherInfoItem
 
 class RestaurantDetailController(private val callback : RestaurantDetailController.IRestaurantDetailControllerCallback) : TypedEpoxyController<RestaurantEntity>() {
     interface IRestaurantDetailControllerCallback{
@@ -50,6 +52,23 @@ class RestaurantDetailController(private val callback : RestaurantDetailControll
 
             }
         }*/
+        restaurantDetailDetailsItem {
+            if(data != null){
+                id(data.restaurantId)
+                cusineData(data.restaurantCusine)
+                dinnerCost(data.restaurantCostForTwo.toString())
+            }
+        }
+
+        data?.restaurantHighlights?.forEach{highlight ->
+            restaurantDetailOtherInfoItem {
+                if(highlight!= null){
+                    id(data.restaurantId)
+                    infoText(highlight)
+                }
+            }
+        }
+
     }
 
 }
