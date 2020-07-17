@@ -7,6 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
@@ -32,6 +33,7 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
         viewmodelFactory
     }
     private var collectionId: Int? = null
+    private var collectionName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,8 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
 
         val intent : Intent = intent
         collectionId = intent.getIntExtra(COLLECTION_ID, -1)
+        collectionName = intent.getStringExtra("collection_name")
+        title = collectionName
 
         if (collectionId == null || collectionId == -1) {
             finish()
@@ -46,14 +50,13 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
         }
 
         val restaurantController = RestaurantController(this).apply {
-            spanCount = 2
+            spanCount = 1
         }
 
-        val gridLayoutManager = GridLayoutManager(this, 2)
-        gridLayoutManager.spanSizeLookup = restaurantController.spanSizeLookup
+        val linearLayoutManager = LinearLayoutManager(this)
 
         restaurant_recycler_view.apply {
-            layoutManager = gridLayoutManager
+            layoutManager = linearLayoutManager
             setController(restaurantController)
         }
 
@@ -79,6 +82,7 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
         //Toast.makeText(this, "Restaurant clicked", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, RestaurantDetailActivity::class.java)
         intent.putExtra(RestaurantDetailActivity.RESTAURANT_ID, restaurant.restaurantId)
+        intent.putExtra("restaurant_name", restaurant.restaurantName)
         this.startActivity(intent)
     }
 }

@@ -31,6 +31,7 @@ class RestaurantDetailActivity  : AppCompatActivity(), RestaurantDetailControlle
     }
 
     private var restaurantId: Int? = null
+    private var restaurantName: String? = null
 
     private val viewmodelFactory by lazy { RestaurantDetailActivityViewModelFactory(this) }
     private val viewModel by viewModels<RestaurantDetailActivityViewModel> {
@@ -44,6 +45,8 @@ class RestaurantDetailActivity  : AppCompatActivity(), RestaurantDetailControlle
 
         val intent : Intent = intent
         restaurantId = intent.getIntExtra(RestaurantDetailActivity.RESTAURANT_ID, -1)
+        restaurantName = intent.getStringExtra("restaurant_name")
+        title = restaurantName
 
         if (restaurantId == null || restaurantId == -1) {
             finish()
