@@ -1,6 +1,7 @@
 package com.manu.foodacious.repository
 
 import android.util.Log
+import com.manu.foodacious.model.restaurant.RestaurantApiModel
 import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.network.IFoodaciousService
 import com.manu.foodacious.persistence.RestaurantDao
@@ -22,12 +23,29 @@ class RestaurantRepository(
             val response =
                 foodaciousService.fetchRestaurantsByCollection(entityId, entityName, collectionId)
             if (response.isSuccessful && response.body() != null) {
-                val restaurantEntityList = mutableListOf<RestaurantEntity>()
+                //val restaurantEntityList = mutableListOf<RestaurantApiModel>()
                 val restaurantList = response.body()!!.restaurants
-                restaurantList.forEach { restaurantItem ->
-                    val restaurantEntity = restaurantItem.restaurant
+                val restaurantEntityList = restaurantList.map { restaurantItem ->
+                    val restaurantApiModel = restaurantItem.restaurantApiModel
+                    val restaurantEntity = RestaurantEntity(
+                        restaurantId = restaurantApiModel.restaurantId,
+                        restaurantName = restaurantApiModel.restaurantName,
+                        restaurantUrl = restaurantApiModel.restaurantUrl,
+                        restaurantLocation = restaurantApiModel.restaurantLocation,
+                        restaurantCusine = restaurantApiModel.restaurantCusine,
+                        restaurantCostForTwo = restaurantApiModel.restaurantCostForTwo,
+                        restaurantThumbnail = restaurantApiModel.restaurantThumbnail,
+                        restaurantUserRating = restaurantApiModel.restaurantUserRating,
+                        restaurantPhotosUrl = restaurantApiModel.restaurantPhotosUrl,
+                        restaurantMenuUrl = restaurantApiModel.restaurantMenuUrl,
+                        restaurantPhoneNumber = restaurantApiModel.restaurantPhoneNumber,
+                        restaurantHighlights = restaurantApiModel.restaurantHighlights,
+                        restaurantEstablishment = restaurantApiModel.restaurantEstablishment,
+                        collectionId = collectionId,
+                        cityId = entityId
+                    )
                     restaurantDao.insertRestaurant(restaurantEntity)
-                    restaurantEntityList.add(restaurantEntity)
+                    restaurantEntity
                 }
                 restaurantEntityList
             } else {

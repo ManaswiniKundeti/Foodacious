@@ -1,3 +1,5 @@
 package com.manu.foodacious.model.restaurant
 
-data class Restaurant(val restaurant : RestaurantEntity )
+import com.squareup.moshi.Json
+
+data class Restaurant(@field:Json(name = "restaurant")val restaurantApiModel : RestaurantApiModel )

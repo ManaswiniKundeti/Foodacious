@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.manu.foodacious.model.restaurant.RestaurantApiModel
 import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.repository.RestaurantRepository
 import com.manu.foodacious.viewstate.Loading
@@ -17,10 +18,10 @@ class RestaurantActivityViewModel (private val restaurantRepository: RestaurantR
     val restaurantLiveData: LiveData<ViewState<List<RestaurantEntity>?>> = _restaurantLiveData
 
 
-    fun getRestaurants(entityId : Int, entityName : String, collectionId : Int){
+    fun getRestaurants(locationId : Int, locationtype : String, collectionId : Int){
         viewModelScope.launch {
             _restaurantLiveData.value = Loading
-            val restaurantList = restaurantRepository.getRestaurantList(entityId, entityName, collectionId)
+            val restaurantList = restaurantRepository.getRestaurantList(locationId, locationtype, collectionId)
             if(restaurantList.isNullOrEmpty()){
                 _restaurantLiveData.value = com.manu.foodacious.viewstate.Error("There was an error fetching restaurants from given collection")
             }else{

@@ -1,5 +1,6 @@
 package com.manu.foodacious.repository
 
+import com.manu.foodacious.model.restaurant.RestaurantApiModel
 import com.manu.foodacious.model.restaurant.RestaurantEntity
 
 interface IRestaurantRepository {

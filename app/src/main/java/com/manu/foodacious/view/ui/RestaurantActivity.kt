@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
+import com.manu.foodacious.model.restaurant.RestaurantApiModel
 import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.view.controllers.RestaurantController
 import com.manu.foodacious.viewmodel.RestaurantActivityViewModel

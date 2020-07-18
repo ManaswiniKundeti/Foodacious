@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
+import com.manu.foodacious.model.restaurant.RestaurantApiModel
 import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.view.controllers.RestaurantDetailController
 import com.manu.foodacious.viewmodel.RestaurantDetailActivityViewModel
@@ -94,10 +95,10 @@ class RestaurantDetailActivity  : AppCompatActivity(), RestaurantDetailControlle
     }
 
     override fun onCopyLocationClicked(restaurant: RestaurantEntity) {
-//        Toast.makeText(this, "Copy Location CLicked", Toast.LENGTH_SHORT).show()
         val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         val clip: ClipData = ClipData.newPlainText("address copied to clipboard",restaurant.restaurantLocation.address )
         clipboard.setPrimaryClip(clip)
+        Toast.makeText(this, "Address copied to clipboard", Toast.LENGTH_SHORT).show()
     }
 
     override fun onGetDirectionsClicked(restaurant: RestaurantEntity) {
