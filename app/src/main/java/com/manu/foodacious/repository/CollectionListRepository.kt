@@ -16,27 +16,33 @@ class CollectionListRepository(
 
     override suspend fun getCollectionList(cityId: Int): List<CollectionEntity>? {
         return try{
-            val response = foodaciousService.fetchCollectionList(cityId)
-            if(response.isSuccessful && response.body() != null){
-                val collectionList = response.body()!!.collections
-                val collectionEntityList = collectionList.map { collection ->
-                    val collectionApiModel = collection.collectionApiModel
-                    val collectionEntity = CollectionEntity(
-                        collectionId = collectionApiModel.collectionId,
-                        placesCount = collectionApiModel.placesCount,
-                        imageUrl = collectionApiModel.imageUrl,
-                        title = collectionApiModel.title,
-                        description = collectionApiModel.description,
-                        cityId = cityId
-                    )
-                    collectionDao.insertCollection(collectionEntity)
-                    collectionEntity
+            val dbCollectionEntityList = collectionDao.getCollectionList(cityId)
+            if(dbCollectionEntityList.isNullOrEmpty()){
+                val response = foodaciousService.fetchCollectionList(cityId)
+                if(response.isSuccessful && response.body() != null){
+                    val collectionList = response.body()!!.collections
+                    val collectionEntityList = collectionList.map { collection ->
+                        val collectionApiModel = collection.collectionApiModel
+                        val collectionEntity = CollectionEntity(
+                            collectionId = collectionApiModel.collectionId,
+                            placesCount = collectionApiModel.placesCount,
+                            imageUrl = collectionApiModel.imageUrl,
+                            title = collectionApiModel.title,
+                            description = collectionApiModel.description,
+                            cityId = cityId
+                        )
+                        collectionDao.insertCollection(collectionEntity)
+                        collectionEntity
+                    }
+                    collectionEntityList
+                }else {
+                    Log.e(TAG,"There was an error fetching collection list")
+                    null
                 }
-                collectionEntityList
-            }else {
-                Log.e(TAG,"There was an error fetching collection list")
-                null
+            }else{
+                dbCollectionEntityList
             }
+
         } catch (e : Exception){
             Log.e(TAG,"There was an error fetching collection list", e)
             null

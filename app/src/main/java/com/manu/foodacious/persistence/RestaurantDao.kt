@@ -13,6 +13,10 @@ interface RestaurantDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRestaurant(restaurant: RestaurantEntity)
 
+    @Query("SELECT * FROM RestaurantEntity WHERE collectionId = :collectionId")
+    suspend fun getRestaurantList(collectionId : Int) : List<RestaurantEntity>
+
     @Query("SELECT * FROM RestaurantEntity WHERE restaurantId = :restaurantId")
     suspend fun getRestaurantDetail(restaurantId : Int) : RestaurantEntity
+
 }

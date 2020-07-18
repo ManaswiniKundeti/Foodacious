@@ -27,7 +27,7 @@ abstract class RestaurantDetailHeaderItemModel : EpoxyModelWithHolder<Restaurant
     @EpoxyAttribute
     lateinit var cost : String
     @EpoxyAttribute
-    lateinit var establishment : String
+    var establishment : String? = null
     @EpoxyAttribute
     var cusine : String? = null
     @EpoxyAttribute(EpoxyAttribute.Option.DoNotHash)
@@ -43,7 +43,6 @@ abstract class RestaurantDetailHeaderItemModel : EpoxyModelWithHolder<Restaurant
         }else{
             holder.restaurantDetailThumImageView.load(thumbImgUrl)
             {
-                //crossfade(true)
                 transformations(RoundedCornersTransformation())
             }
         }

@@ -20,37 +20,40 @@ class RestaurantRepository(
         collectionId: Int
     ): List<RestaurantEntity>? {
         return try {
-            val response =
-                foodaciousService.fetchRestaurantsByCollection(entityId, entityName, collectionId)
-            if (response.isSuccessful && response.body() != null) {
-                //val restaurantEntityList = mutableListOf<RestaurantApiModel>()
-                val restaurantList = response.body()!!.restaurants
-                val restaurantEntityList = restaurantList.map { restaurantItem ->
-                    val restaurantApiModel = restaurantItem.restaurantApiModel
-                    val restaurantEntity = RestaurantEntity(
-                        restaurantId = restaurantApiModel.restaurantId,
-                        restaurantName = restaurantApiModel.restaurantName,
-                        restaurantUrl = restaurantApiModel.restaurantUrl,
-                        restaurantLocation = restaurantApiModel.restaurantLocation,
-                        restaurantCusine = restaurantApiModel.restaurantCusine,
-                        restaurantCostForTwo = restaurantApiModel.restaurantCostForTwo,
-                        restaurantThumbnail = restaurantApiModel.restaurantThumbnail,
-                        restaurantUserRating = restaurantApiModel.restaurantUserRating,
-                        restaurantPhotosUrl = restaurantApiModel.restaurantPhotosUrl,
-                        restaurantMenuUrl = restaurantApiModel.restaurantMenuUrl,
-                        restaurantPhoneNumber = restaurantApiModel.restaurantPhoneNumber,
-                        restaurantHighlights = restaurantApiModel.restaurantHighlights,
-                        restaurantEstablishment = restaurantApiModel.restaurantEstablishment,
-                        collectionId = collectionId,
-                        cityId = entityId
-                    )
-                    restaurantDao.insertRestaurant(restaurantEntity)
-                    restaurantEntity
+            val dbRestaurantEntityList = restaurantDao.getRestaurantList(collectionId)
+            if(dbRestaurantEntityList.isNullOrEmpty()){
+                val response = foodaciousService.fetchRestaurantsByCollection(entityId, entityName, collectionId)
+                if (response.isSuccessful && response.body() != null) {
+                    val restaurantList = response.body()!!.restaurants
+                    val restaurantEntityList = restaurantList.map { restaurantItem ->
+                        val restaurantApiModel = restaurantItem.restaurantApiModel
+                        val restaurantEntity = RestaurantEntity(
+                            restaurantId = restaurantApiModel.restaurantId,
+                            restaurantName = restaurantApiModel.restaurantName,
+                            restaurantUrl = restaurantApiModel.restaurantUrl,
+                            restaurantLocation = restaurantApiModel.restaurantLocation,
+                            restaurantCusine = restaurantApiModel.restaurantCusine,
+                            restaurantCostForTwo = restaurantApiModel.restaurantCostForTwo,
+                            restaurantThumbnail = restaurantApiModel.restaurantThumbnail,
+                            restaurantUserRating = restaurantApiModel.restaurantUserRating,
+                            restaurantPhotosUrl = restaurantApiModel.restaurantPhotosUrl,
+                            restaurantMenuUrl = restaurantApiModel.restaurantMenuUrl,
+                            restaurantPhoneNumber = restaurantApiModel.restaurantPhoneNumber,
+                            restaurantHighlights = restaurantApiModel.restaurantHighlights,
+                            restaurantEstablishment = restaurantApiModel.restaurantEstablishment,
+                            collectionId = collectionId,
+                            cityId = entityId
+                        )
+                        restaurantDao.insertRestaurant(restaurantEntity)
+                        restaurantEntity
+                    }
+                    restaurantEntityList
+                } else {
+                    Log.e(TAG, "There was error fetching restaurants, error in response")
+                    return null
                 }
-                restaurantEntityList
-            } else {
-                Log.e(TAG, "There was error fetching restaurants, error in response")
-                return null
+            }else{
+                dbRestaurantEntityList
             }
         } catch (e: Exception) {
             Log.e(TAG, "InCatch : There was error fetching restaurants", e)
