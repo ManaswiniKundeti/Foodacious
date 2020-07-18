@@ -75,6 +75,9 @@ dependencies {
     implementation "com.airbnb.android:epoxy:4.0.0-beta4"
     kapt "com.airbnb.android:epoxy-processor:4.0.0-beta4"
 
+    // GOogle play services for location
+    implementation "com.google.android.gms:play-services-location:17.0.0"
+
     //espresso setup
     androidTestImplementation 'com.android.support.test:runner:1.1.0'
     androidTestImplementation 'com.android.support.test:rules:1.1.0'
