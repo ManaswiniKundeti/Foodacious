@@ -1,18 +1,36 @@
 package com.manu.foodacious.view.ui
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.manu.foodacious.R
+import androidx.lifecycle.Observer
+import com.manu.foodacious.extensions.hide
+import com.manu.foodacious.extensions.show
+
+import com.manu.foodacious.viewmodel.SplashActivityViewModel
+import com.manu.foodacious.viewmodel.SplashActivityViewModelFactory
+import com.manu.foodacious.viewstate.Error
+import com.manu.foodacious.viewstate.Loading
+import com.manu.foodacious.viewstate.Success
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsResultCallback {
+
+    private val viewmodelFactory by lazy { SplashActivityViewModelFactory(this) }
+    private val viewModel by viewModels<SplashActivityViewModel> {
+        viewmodelFactory
+    }
 
     companion object{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 100
@@ -75,6 +93,23 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
         try {
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 Log.d(TAG, "Location fetched: ${location.latitude}")
+
+                viewModel.getCityId(location.latitude, location.longitude)
+                viewModel.cityIdLiveData.observe(this, Observer{ viewState ->
+                    when(viewState){
+                        is Loading -> { splash_progress_bar.show() }
+                        is Success -> {
+                            splash_progress_bar.hide()
+                            val intent = Intent(this, MainActivity::class.java)
+                            intent.putExtra(MainActivity.CITY_ID, viewState.data)
+                            this.startActivity(intent)
+                            finish()
+                        }
+                        is Error -> {
+                            splash_progress_bar.hide()
+                            Toast.makeText(this, "Error fetching cityId", Toast.LENGTH_LONG).show()}
+                    }
+                })
             }
         } catch (e: SecurityException) {
             Log.e(TAG, "Security exception", e)

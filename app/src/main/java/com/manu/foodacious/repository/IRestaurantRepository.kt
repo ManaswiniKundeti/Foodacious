@@ -1,7 +1,6 @@
 package com.manu.foodacious.repository
 
-import com.manu.foodacious.model.Collection.CollectionEntity
-import com.manu.foodacious.model.Restaurant.RestaurantEntity
+import com.manu.foodacious.model.restaurant.RestaurantEntity
 
 interface IRestaurantRepository {
 

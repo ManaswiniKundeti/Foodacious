@@ -4,8 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.manu.foodacious.model.Collection.CollectionEntity
-import com.manu.foodacious.model.Restaurant.RestaurantEntity
+import com.manu.foodacious.model.restaurant.RestaurantEntity
 
 @Dao
 interface RestaurantDao {

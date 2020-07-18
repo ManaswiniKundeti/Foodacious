@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
-import com.manu.foodacious.model.Collection.CollectionEntity
+import com.manu.foodacious.model.collection.CollectionApiModel
+import com.manu.foodacious.model.collection.CollectionEntity
 import com.manu.foodacious.view.controllers.CollectionController
 import com.manu.foodacious.viewmodel.MainActivityViewModel
 import com.manu.foodacious.viewmodel.MainActivityViewModelFactory
@@ -26,9 +27,23 @@ class MainActivity : AppCompatActivity(),CollectionController.IControllerCallbac
         viewmodelFactory
     }
 
+    companion object {
+        const val CITY_ID = "city_id"
+        const val TORONTO_CITY_ID = 89
+    }
+    private var cityId: Int? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val intent : Intent = intent
+        cityId = intent.getIntExtra(CITY_ID, TORONTO_CITY_ID)
+
+        if (cityId == null) {
+            finish()
+            return
+        }
 
         val collectionController = CollectionController(this).apply {
             spanCount = 2
@@ -54,14 +69,14 @@ class MainActivity : AppCompatActivity(),CollectionController.IControllerCallbac
                     Toast.makeText(this, "Error fetching data", Toast.LENGTH_LONG).show()}
             }
         })
-        viewModel.getCollections(89)
+        viewModel.getCollections(cityId!!)
     }
 
     override fun onCollectionClicked(collection: CollectionEntity) {
-        //Toast.makeText(this, "Collection clicked", Toast.LENGTH_SHORT).show()
         val intent = Intent(this, RestaurantActivity::class.java)
-        intent.putExtra(RestaurantActivity.COLLECTION_ID, collection.collectionId)
-        intent.putExtra("collection_name", collection.title)
+        intent.putExtra(RestaurantActivity.ARG_COLLECTION_ID, collection.collectionId)
+        intent.putExtra(RestaurantActivity.ARG_CITY_ID, collection.cityId)
+        intent.putExtra(RestaurantActivity.ARG_COLLECTION_NAME, collection.title)
         this.startActivity(intent)
 
     }

@@ -1,7 +1,8 @@
 package com.manu.foodacious.repository
 
 import android.util.Log
-import com.manu.foodacious.model.Collection.CollectionEntity
+import com.manu.foodacious.model.collection.CollectionApiModel
+import com.manu.foodacious.model.collection.CollectionEntity
 import com.manu.foodacious.network.IFoodaciousService
 import com.manu.foodacious.persistence.CollectionDao
 import java.lang.Exception
@@ -17,12 +18,19 @@ class CollectionListRepository(
         return try{
             val response = foodaciousService.fetchCollectionList(cityId)
             if(response.isSuccessful && response.body() != null){
-                val collectionEntityList = mutableListOf<CollectionEntity>()
                 val collectionList = response.body()!!.collections
-                collectionList.forEach { collection ->
-                    val collectionEntity = collection.collection
+                val collectionEntityList = collectionList.map { collection ->
+                    val collectionApiModel = collection.collectionApiModel
+                    val collectionEntity = CollectionEntity(
+                        collectionId = collectionApiModel.collectionId,
+                        placesCount = collectionApiModel.placesCount,
+                        imageUrl = collectionApiModel.imageUrl,
+                        title = collectionApiModel.title,
+                        description = collectionApiModel.description,
+                        cityId = cityId
+                    )
                     collectionDao.insertCollection(collectionEntity)
-                    collectionEntityList.add(collectionEntity)
+                    collectionEntity
                 }
                 collectionEntityList
             }else {

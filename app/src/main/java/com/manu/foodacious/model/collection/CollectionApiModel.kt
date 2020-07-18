@@ -1,12 +1,9 @@
-package com.manu.foodacious.model.Collection
+package com.manu.foodacious.model.collection
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.squareup.moshi.Json
 
-@Entity
-data class CollectionEntity (
-    @field:Json(name = "collection_id") @PrimaryKey
+data class CollectionApiModel (
+    @field:Json(name = "collection_id")
     val collectionId: Int,
     @field:Json(name = "res_count")
     val placesCount: Int,

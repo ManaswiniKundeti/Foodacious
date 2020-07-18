@@ -1,8 +1,7 @@
 package com.manu.foodacious.view.controllers
 
 import com.airbnb.epoxy.TypedEpoxyController
-import com.manu.foodacious.extensions.convertToCustomCostString
-import com.manu.foodacious.model.Restaurant.RestaurantEntity
+import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.view.models.restaurantDetailAddressItem
 import com.manu.foodacious.view.models.restaurantDetailDetailsItem
 import com.manu.foodacious.view.models.restaurantDetailHeaderItem

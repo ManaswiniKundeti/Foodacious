@@ -1,8 +1,7 @@
 package com.manu.foodacious.persistence
 
 import androidx.room.TypeConverter
-import com.manu.foodacious.model.Restaurant.RestaurantLocation
-import com.manu.foodacious.model.Restaurant.RestaurantUserRating
+import com.manu.foodacious.model.restaurant.RestaurantUserRating
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 

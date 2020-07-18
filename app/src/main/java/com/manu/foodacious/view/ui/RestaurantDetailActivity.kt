@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
-import com.manu.foodacious.model.Restaurant.RestaurantEntity
+import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.view.controllers.RestaurantDetailController
 import com.manu.foodacious.viewmodel.RestaurantDetailActivityViewModel
 import com.manu.foodacious.viewmodel.RestaurantDetailActivityViewModelFactory

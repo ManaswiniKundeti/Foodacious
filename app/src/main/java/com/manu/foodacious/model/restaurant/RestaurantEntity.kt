@@ -1,4 +1,4 @@
-package com.manu.foodacious.model.Restaurant
+package com.manu.foodacious.model.restaurant
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

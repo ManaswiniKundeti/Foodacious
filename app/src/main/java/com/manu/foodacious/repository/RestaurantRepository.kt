@@ -1,7 +1,7 @@
 package com.manu.foodacious.repository
 
 import android.util.Log
-import com.manu.foodacious.model.Restaurant.RestaurantEntity
+import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.network.IFoodaciousService
 import com.manu.foodacious.persistence.RestaurantDao
 import java.lang.Exception

@@ -1,7 +1,8 @@
 package com.manu.foodacious.network
 
-import com.manu.foodacious.model.Collection.CollectionResponseData
-import com.manu.foodacious.model.Restaurant.RestaurantResponseData
+import com.manu.foodacious.model.collection.CollectionResponseData
+import com.manu.foodacious.model.geocode.GeocodeResponseData
+import com.manu.foodacious.model.restaurant.RestaurantResponseData
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -44,4 +45,13 @@ interface IFoodaciousService {
         @Query("collection_id")
         collection_id : Int
     ) : Response<RestaurantResponseData>
+
+    @Headers("user-key:080aa6684f4410919d9208e8549fb979")
+    @GET("geocode")
+    suspend fun fetchCityId(
+        @Query("lat")
+        latitude : Double,
+        @Query("lon")
+        longitude : Double
+    ) : Response<GeocodeResponseData>
 }

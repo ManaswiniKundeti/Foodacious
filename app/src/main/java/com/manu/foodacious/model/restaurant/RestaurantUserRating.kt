@@ -1,4 +1,4 @@
-package com.manu.foodacious.model.Restaurant
+package com.manu.foodacious.model.restaurant
 
 import com.squareup.moshi.Json
 

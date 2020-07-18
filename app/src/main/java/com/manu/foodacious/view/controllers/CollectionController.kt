@@ -1,7 +1,8 @@
 package com.manu.foodacious.view.controllers
 
 import com.airbnb.epoxy.TypedEpoxyController
-import com.manu.foodacious.model.Collection.CollectionEntity
+import com.manu.foodacious.model.collection.CollectionApiModel
+import com.manu.foodacious.model.collection.CollectionEntity
 import com.manu.foodacious.view.models.collectionItem
 
 class CollectionController(private val callback: IControllerCallback): TypedEpoxyController<List<CollectionEntity>>() {

@@ -6,15 +6,12 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
-import com.manu.foodacious.model.Restaurant.RestaurantEntity
+import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.view.controllers.RestaurantController
-import com.manu.foodacious.viewmodel.MainActivityViewModel
-import com.manu.foodacious.viewmodel.MainActivityViewModelFactory
 import com.manu.foodacious.viewmodel.RestaurantActivityViewModel
 import com.manu.foodacious.viewmodel.RestaurantActivityViewModelFactory
 import com.manu.foodacious.viewstate.Error
@@ -25,7 +22,10 @@ import kotlinx.android.synthetic.main.activity_restaurant.*
 class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurantControllerCallback {
 
     companion object {
-        const val COLLECTION_ID = "collection_id"
+        const val ARG_COLLECTION_ID = "collection_id"
+        const val ARG_CITY_ID = "city_id"
+        const val ARG_COLLECTION_NAME = "collection_name"
+        const val PARAM_CITY = "city"
     }
 
     private val viewmodelFactory by lazy { RestaurantActivityViewModelFactory(this) }
@@ -33,6 +33,7 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
         viewmodelFactory
     }
     private var collectionId: Int? = null
+    private var cityId: Int? = null
     private var collectionName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,11 +41,12 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
         setContentView(R.layout.activity_restaurant)
 
         val intent : Intent = intent
-        collectionId = intent.getIntExtra(COLLECTION_ID, -1)
-        collectionName = intent.getStringExtra("collection_name")
+        collectionId = intent.getIntExtra(ARG_COLLECTION_ID, -1)
+        cityId = intent.getIntExtra(ARG_CITY_ID, 89)
+        collectionName = intent.getStringExtra(ARG_COLLECTION_NAME)
         title = collectionName
 
-        if (collectionId == null || collectionId == -1) {
+        if (collectionId == null || collectionId == -1 || cityId == -1) {
             finish()
             return
         }
@@ -75,7 +77,7 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
                 }
             }
         })
-        viewModel.getRestaurants(89, "city", collectionId!!)
+        viewModel.getRestaurants(cityId!!, PARAM_CITY, collectionId!!)
     }
 
     override fun onRestaurantClicked(restaurant: RestaurantEntity) {

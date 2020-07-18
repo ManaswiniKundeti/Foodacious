@@ -4,9 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.manu.foodacious.model.Collection.CollectionEntity
-import com.manu.foodacious.model.Restaurant.RestaurantEntity
-import com.manu.foodacious.repository.CollectionListRepository
+import com.manu.foodacious.model.restaurant.RestaurantEntity
 import com.manu.foodacious.repository.RestaurantRepository
 import com.manu.foodacious.viewstate.Loading
 import com.manu.foodacious.viewstate.Success
