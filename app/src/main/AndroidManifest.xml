@@ -16,7 +16,8 @@
         <activity android:name=".view.ui.MainActivity" />
         <activity android:name=".view.ui.RestaurantActivity" android:parentActivityName=".view.ui.MainActivity"/>
         <activity android:name=".view.ui.RestaurantDetailActivity" android:parentActivityName=".view.ui.RestaurantActivity"/>
-        <activity android:name=".view.ui.SplashActivity">
+        <activity android:name=".view.ui.SplashActivity"
+            android:theme="@style/SplashActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
