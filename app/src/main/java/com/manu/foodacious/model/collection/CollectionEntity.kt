@@ -3,9 +3,8 @@ package com.manu.foodacious.model.collection
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(primaryKeys = ["collectionId","cityId"])
 data class CollectionEntity (
-    @PrimaryKey
     val collectionId: Int,
     val placesCount: Int,
     val imageUrl: String,

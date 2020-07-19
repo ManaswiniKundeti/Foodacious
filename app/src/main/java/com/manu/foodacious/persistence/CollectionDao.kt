@@ -14,7 +14,7 @@ interface CollectionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCollection(collection: CollectionEntity)
 
-    @Query("SELECT * FROM CollectionEntity WHERE cityId = :cityId")
+    @Query("SELECT * FROM CollectionEntity WHERE cityId = :cityId ")
     suspend fun getCollectionList(cityId : Int) : List<CollectionEntity>
 
 }

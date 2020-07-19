@@ -20,7 +20,7 @@ class RestaurantRepository(
         collectionId: Int
     ): List<RestaurantEntity>? {
         return try {
-            val dbRestaurantEntityList = restaurantDao.getRestaurantList(collectionId)
+            val dbRestaurantEntityList = restaurantDao.getRestaurantList(collectionId,entityId)
             if(dbRestaurantEntityList.isNullOrEmpty()){
                 val response = foodaciousService.fetchRestaurantsByCollection(entityId, entityName, collectionId)
                 if (response.isSuccessful && response.body() != null) {
