@@ -43,6 +43,22 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+        viewModel.cityIdLiveData.observe(this, Observer{ viewState ->
+            when(viewState){
+                is Loading -> { splash_progress_bar.show() }
+                is Success -> {
+                    splash_progress_bar.hide()
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra(MainActivity.CITY_ID, viewState.data)
+                    this.startActivity(intent)
+                    finish()
+                }
+                is Error -> {
+                    splash_progress_bar.hide()
+                    Toast.makeText(this, "Error fetching cityId", Toast.LENGTH_LONG).show()}
+            }
+        })
+
         checkLocationEnabled()
     }
 
@@ -92,24 +108,7 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
 
         try {
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                Log.d(TAG, "Location fetched: ${location.latitude}")
-
                 viewModel.getCityId(location.latitude, location.longitude)
-                viewModel.cityIdLiveData.observe(this, Observer{ viewState ->
-                    when(viewState){
-                        is Loading -> { splash_progress_bar.show() }
-                        is Success -> {
-                            splash_progress_bar.hide()
-                            val intent = Intent(this, MainActivity::class.java)
-                            intent.putExtra(MainActivity.CITY_ID, viewState.data)
-                            this.startActivity(intent)
-                            finish()
-                        }
-                        is Error -> {
-                            splash_progress_bar.hide()
-                            Toast.makeText(this, "Error fetching cityId", Toast.LENGTH_LONG).show()}
-                    }
-                })
             }
         } catch (e: SecurityException) {
             Log.e(TAG, "Security exception", e)

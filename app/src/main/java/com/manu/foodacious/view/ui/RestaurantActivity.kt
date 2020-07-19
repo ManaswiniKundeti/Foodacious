@@ -37,6 +37,8 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
     private var cityId: Int? = null
     private var collectionName: String? = null
 
+    private var restaurantList = mutableListOf<RestaurantEntity>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_restaurant)
@@ -70,7 +72,10 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
                 }
                 is Success -> {
                     restaurant_progress_bar.hide()
-                    restaurantController.setData(viewState.data)
+                    restaurantList.clear()
+                    restaurantList.addAll(viewState.data!!)
+
+                    restaurantController.setData(restaurantList)
                 }
                 is Error -> {
                     restaurant_progress_bar.hide()

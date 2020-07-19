@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.manu.foodacious.network.createFoodaciousService
 import com.manu.foodacious.persistence.AppDatabase
 import com.manu.foodacious.repository.CollectionListRepository
+import com.manu.foodacious.repository.GeocodeRepository
 import java.lang.IllegalArgumentException
 
 class MainActivityViewModelFactory(private val context : Context) : ViewModelProvider.Factory {
@@ -14,7 +15,8 @@ class MainActivityViewModelFactory(private val context : Context) : ViewModelPro
         if(modelClass.isAssignableFrom(MainActivityViewModel::class.java)){
             return MainActivityViewModel(CollectionListRepository(
                 createFoodaciousService(), AppDatabase.getAppDatabase(context).collectionDao()
-            )) as T
+            ), GeocodeRepository(createFoodaciousService())
+            ) as T
         }
         throw IllegalArgumentException("Unknown view model class")
     }
