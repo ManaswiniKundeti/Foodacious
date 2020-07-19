@@ -14,10 +14,10 @@ import com.manu.foodacious.viewstate.Success
 import com.manu.foodacious.viewstate.ViewState
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(private val collectionListRepository: CollectionListRepository, private val geocodeRepository: GeocodeRepository) : ViewModel() {
+class MainActivityViewModel(private val collectionListRepository: CollectionListRepository, geocodeRepository: GeocodeRepository) : LocationViewModel(geocodeRepository) {
 
     private val _locationLiveData: MutableLiveData<ViewState<GeocodeLocation>> = MutableLiveData()
-    val locationLiveData: MutableLiveData<ViewState<GeocodeLocation>> = _locationLiveData
+    val locationLiveData: LiveData<ViewState<GeocodeLocation>> = _locationLiveData
 
     private val _collectionListLiveData: MutableLiveData<ViewState<List<CollectionEntity>?>> = MutableLiveData()
     val collectionLiveData: LiveData<ViewState<List<CollectionEntity>?>> = _collectionListLiveData
@@ -34,16 +34,7 @@ class MainActivityViewModel(private val collectionListRepository: CollectionList
         }
     }
 
-    fun getLocationData(latitude : Double, longitude : Double){
-        viewModelScope.launch {
-            _locationLiveData.value = Loading
-            val location = geocodeRepository.getCityId(latitude,longitude)
-            if(location != null){
-                _locationLiveData.value = Success(location)
-            }else{
-                _locationLiveData.value = com.manu.foodacious.viewstate.Error("There was an error fetching cityId")
-            }
-        }
+    override fun fetchLocationLiveData(): MutableLiveData<ViewState<GeocodeLocation>> {
+        return _locationLiveData
     }
-
 }
