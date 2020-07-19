@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.manu.foodacious.R
 import com.manu.foodacious.extensions.hide
@@ -55,13 +56,16 @@ class RestaurantActivity : AppCompatActivity(), RestaurantController.IRestaurant
         }
 
         val restaurantController = RestaurantController(this).apply {
-            spanCount = 1
+            spanCount = 2
         }
 
-        val linearLayoutManager = LinearLayoutManager(this)
+        val gridLayoutManager = GridLayoutManager(this, 2)
+        gridLayoutManager.spanSizeLookup = restaurantController.spanSizeLookup
+
+//        val linearLayoutManager = LinearLayoutManager(this)
 
         restaurant_recycler_view.apply {
-            layoutManager = linearLayoutManager
+            layoutManager = gridLayoutManager
             setController(restaurantController)
         }
 

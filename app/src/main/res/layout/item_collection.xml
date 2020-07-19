@@ -2,11 +2,14 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
      android:layout_width="wrap_content"
     app:cardElevation="4dp"
     android:layout_marginTop="5dp"
     android:layout_marginStart="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp"
     app:cardCornerRadius="10dp"
     android:id="@+id/collection_item_card_view">
 
@@ -28,7 +31,7 @@
         <TextView
             android:id="@+id/collection_item_title_text_view"
             android:layout_width="0dp"
-            android:layout_height="27dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/collection_item_image_view"
             android:background="#7000"
             android:gravity="center"
