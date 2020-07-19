@@ -38,18 +38,21 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
     }
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var cityName : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        viewModel.cityIdLiveData.observe(this, Observer{ viewState ->
+        viewModel.locationLiveData.observe(this, Observer{ viewState ->
             when(viewState){
                 is Loading -> { splash_progress_bar.show() }
                 is Success -> {
                     splash_progress_bar.hide()
+                    cityName = viewState.data.cityName
+                    Toast.makeText(this, "Location : $cityName ", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
-                    intent.putExtra(MainActivity.CITY_ID, viewState.data)
+                    intent.putExtra(MainActivity.CITY_ID, viewState.data.cityId)
                     this.startActivity(intent)
                     finish()
                 }
@@ -103,12 +106,10 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
     }
 
     private fun fetchUsersLocation() {
-        Toast.makeText(this, "Location permission granted", Toast.LENGTH_SHORT).show()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
         try {
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-                viewModel.getCityId(location.latitude, location.longitude)
+                viewModel.getLocationData(location.latitude, location.longitude)
             }
         } catch (e: SecurityException) {
             Log.e(TAG, "Security exception", e)

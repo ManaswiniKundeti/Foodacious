@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.manu.foodacious.model.collection.CollectionApiModel
 import com.manu.foodacious.model.collection.CollectionEntity
+import com.manu.foodacious.model.geocode.GeocodeLocation
 import com.manu.foodacious.repository.CollectionListRepository
 import com.manu.foodacious.repository.GeocodeRepository
 import com.manu.foodacious.viewstate.Loading
@@ -15,8 +16,8 @@ import kotlinx.coroutines.launch
 
 class MainActivityViewModel(private val collectionListRepository: CollectionListRepository, private val geocodeRepository: GeocodeRepository) : ViewModel() {
 
-    private val _cityIdLiveData: MutableLiveData<ViewState<Int>> = MutableLiveData()
-    val cityIdLiveData: LiveData<ViewState<Int>> = _cityIdLiveData
+    private val _locationLiveData: MutableLiveData<ViewState<GeocodeLocation>> = MutableLiveData()
+    val locationLiveData: MutableLiveData<ViewState<GeocodeLocation>> = _locationLiveData
 
     private val _collectionListLiveData: MutableLiveData<ViewState<List<CollectionEntity>?>> = MutableLiveData()
     val collectionLiveData: LiveData<ViewState<List<CollectionEntity>?>> = _collectionListLiveData
@@ -33,14 +34,14 @@ class MainActivityViewModel(private val collectionListRepository: CollectionList
         }
     }
 
-    fun getCityId(latitude : Double, longitude : Double){
+    fun getLocationData(latitude : Double, longitude : Double){
         viewModelScope.launch {
-            _cityIdLiveData.value = Loading
-            val cityId = geocodeRepository.getCityId(latitude,longitude)
-            if(cityId != null){
-                _cityIdLiveData.value = Success(cityId)
+            _locationLiveData.value = Loading
+            val location = geocodeRepository.getCityId(latitude,longitude)
+            if(location != null){
+                _locationLiveData.value = Success(location)
             }else{
-                _cityIdLiveData.value = com.manu.foodacious.viewstate.Error("There was an error fetching cityId")
+                _locationLiveData.value = com.manu.foodacious.viewstate.Error("There was an error fetching cityId")
             }
         }
     }
