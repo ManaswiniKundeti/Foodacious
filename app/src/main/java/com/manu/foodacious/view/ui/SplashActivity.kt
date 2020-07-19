@@ -16,6 +16,7 @@ import com.manu.foodacious.R
 import androidx.lifecycle.Observer
 import com.manu.foodacious.extensions.hide
 import com.manu.foodacious.extensions.show
+import com.manu.foodacious.helpers.SharedPreferenceHelper
 
 import com.manu.foodacious.viewmodel.SplashActivityViewModel
 import com.manu.foodacious.viewmodel.SplashActivityViewModelFactory
@@ -34,11 +35,12 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
 
     companion object{
         private const val LOCATION_PERMISSION_REQUEST_CODE = 100
+        private const val ARG_CITY_ID = "city_id"
         private val TAG = SplashActivity::class.java.simpleName
     }
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private lateinit var cityName : String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +51,9 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
                 is Loading -> { splash_progress_bar.show() }
                 is Success -> {
                     splash_progress_bar.hide()
-                    cityName = viewState.data.cityName
-                    Toast.makeText(this, "Location : $cityName ", Toast.LENGTH_SHORT).show()
+                    SharedPreferenceHelper(this).clearInt(ARG_CITY_ID)
+                    Toast.makeText(this, "Location : ${viewState.data.cityName} ", Toast.LENGTH_SHORT).show()
+                    SharedPreferenceHelper(this).putInt(ARG_CITY_ID,viewState.data.cityId)
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra(MainActivity.CITY_ID, viewState.data.cityId)
                     this.startActivity(intent)
@@ -58,7 +61,12 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
                 }
                 is Error -> {
                     splash_progress_bar.hide()
-                    Toast.makeText(this, "Error fetching cityId", Toast.LENGTH_LONG).show()}
+                    val intent = Intent(this, MainActivity::class.java)
+                    intent.putExtra(MainActivity.CITY_ID, SharedPreferenceHelper(this).getInt(ARG_CITY_ID,0))
+                    this.startActivity(intent)
+                    finish()
+                    //Toast.makeText(this, "Error fetching cityId TOAST", Toast.LENGTH_LONG).show()
+                }
             }
         })
 
