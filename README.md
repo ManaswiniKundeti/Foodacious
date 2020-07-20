@@ -15,8 +15,6 @@ The app also uses <b>Epoxy</b> library to display the complex Recycler View <br/
 ## Download
 Go to the [Releases](https://github.com/ManaswiniKundeti/Investodroid/releases) to download the lastest APK.
 
-<img src="/previews/Investodroid.gif" align="right" width="32%"/>
-
 ## App Features
 - Collections: The home page of the app displays the collection of restaurants.
 - Restaurants: Users can select the type of collection, which displays the list of restaurants in the collection.
