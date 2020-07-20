@@ -40,8 +40,8 @@ Go to the [Releases](https://github.com/ManaswiniKundeti/Investodroid/releases) 
   - MVVM Architecture (View - ViewModel - Model)
   - Repository pattern
 - Google Play Location Services
-- [Retrofit2](https://github.com/square/retrofit).
-- [Coil](https://github.com/coil-kt/coil).
+- [Retrofit2](https://github.com/square/retrofit)
+- [Coil](https://github.com/coil-kt/coil)
 - [Epoxy](https://github.com/airbnb/epoxy).
 
 ## Architecture
