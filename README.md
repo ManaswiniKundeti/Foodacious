@@ -48,6 +48,6 @@ Tomato is based on MVVM architecture and a repository pattern.
 Tomato uses the [Zomato Api](https://developers.zomato.com/documentation#!/)
 
 ## Find this repository useful?
-Support it by joining __[stargazers](https://github.com/ManaswiniKundeti/Investodroid/stargazers)__ for this repository.<br>
+Support it by joining __[stargazers](https://github.com/ManaswiniKundeti/Foodacious/stargazers)__ for this repository.<br>
 
 # License
