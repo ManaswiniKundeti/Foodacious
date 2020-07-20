@@ -2,21 +2,15 @@
 
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
-  <a href="https://android-arsenal.com/api?level=23"><img alt="API" src="https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=flat"/></a> 
-  <a href="https://github.com/ManaswiniKundeti/Foodacious/actions"><img alt="Build Status" src="https://github.com/ManaswiniKundeti/Foodacious/workflows/Android%20CI/badge.svg"/></a> 
+  <a href="https://android-arsenal.com/api?level=23"><img alt="API" src="https://img.shields.io/badge/API-23%2B-brightgreen.svg?style=flat"/></a>  
 </p>
 
 <p align="center">
 A sample restaurant viewer Android application which displays list of restaurants based on user location.This app was built on <b>Kotlin</b> using <b>Android Architecture components (ViewModel, LiveData, Room)</b>, <b>Retrofit</b>, <b>Coil</b> and <b>Coroutines</b>.
 This app asks for user permission to access user location
-The app also uses <b>Epoxy Recycler View</b>for the UI<br/>
+The app also uses <b>Epoxy</b> library to display the complex Recycler View <br/>
 </p>
 </br>
-
-<p align="center">
-<img src="/previews/main_light.png" width=150/>
-<img src = "/previews/main_dark.png" width=150 />
-</p>
 
 ## Download
 Go to the [Releases](https://github.com/ManaswiniKundeti/Investodroid/releases) to download the lastest APK.
