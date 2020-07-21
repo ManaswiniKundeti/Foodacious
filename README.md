@@ -12,6 +12,13 @@ The app also uses <b>Epoxy</b> library to display the complex Recycler View <br/
 </p>
 </br>
 
+<p align="center">
+<img src="/previews/splash_screen.jpg" width=150/>
+<img src = "/previews/main_screen.jpg" width=150 />
+<img src = "/previews/restaurants_screen.jpg" width=150 />
+<img src = "/previews/restaurant_details.jpg" width=150 />
+</p>
+
 ## Download
 Go to the [Releases](https://github.com/ManaswiniKundeti/Foodacious/releases) to download the lastest APK.
 
