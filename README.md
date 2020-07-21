@@ -13,7 +13,7 @@ The app also uses <b>Epoxy</b> library to display the complex Recycler View <br/
 </br>
 
 ## Download
-Go to the [Releases](https://github.com/ManaswiniKundeti/Investodroid/releases) to download the lastest APK.
+Go to the [Releases](https://github.com/ManaswiniKundeti/Foodacious/releases) to download the lastest APK.
 
 ## App Features
 - Collections: The home page of the app displays the collection of restaurants.
