@@ -116,6 +116,7 @@ class SplashActivity: AppCompatActivity(), ActivityCompat.OnRequestPermissionsRe
     private fun fetchUsersLocation() {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         try {
+
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 viewModel.getLocationData(location.latitude, location.longitude)
             }
