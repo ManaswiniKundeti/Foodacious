@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-A sample restaurant viewer Android application which displays list of restaurants based on user location.This app was built on <b>Kotlin</b> using <b>Android Architecture components (ViewModel, LiveData, Room)</b>, <b>Retrofit</b>, <b>Coil</b> and <b>Coroutines</b>.
+A sample android application that uses the Zomato API to display trending restaurant collections based on the user's location. This app was built on <b>Kotlin</b> using <b>Android Architecture components (ViewModel, LiveData, Room)</b>, <b>Retrofit</b>, <b>Coil</b> and <b>Coroutines</b>.
 This app asks for user permission to access user location
 The app also uses <b>Epoxy</b> library to display the complex Recycler View <br/>
 </p>
